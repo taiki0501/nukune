@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>会社概要 - NUKUNE</title>
+    <meta name="description" content="NUKUNE 会社概要 - PEDIA株式会社について">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #111827;
+            --accent-burgundy: #8B1E3F;
+            --accent-gold: #D4AF37;
+            --bg-dark: #0F131A;
+            --text-light: #F9FAFB;
+            --text-gray: #9CA3AF;
+            --card-bg: rgba(17, 24, 39, 0.8);
+            --border-color: rgba(212, 175, 55, 0.2);
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(15, 19, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            padding: 1rem 0;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: var(--text-light);
+        }
+
+        .logo_img {
+            width: 120px;
+            height: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--accent-gold);
+        }
+
+        .nav-link.primary {
+            background: linear-gradient(135deg, var(--accent-burgundy), #A02141);
+            color: white;
+            padding: 0.75rem 1.5rem;
+        }
+
+        .nav-link.primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(139, 30, 63, 0.3);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+            padding: 4rem 0;
+            min-height: calc(100vh - 80px);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .page-title {
+            font-family: 'Playfair Display', 'Noto Serif JP', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .content-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 3rem;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            margin-bottom: 2rem;
+        }
+
+        .company-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .company-name {
+            font-family: 'Playfair Display', 'Noto Serif JP', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        .company-tagline {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            font-style: italic;
+        }
+
+        .company-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .info-section {
+            background: rgba(17, 24, 39, 0.6);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .info-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--accent-gold);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: var(--text-gray);
+            font-weight: 500;
+        }
+
+        .info-value {
+            color: var(--text-light);
+            font-weight: 600;
+            text-align: right;
+        }
+
+        .business-content {
+            background: rgba(139, 30, 63, 0.1);
+            border: 1px solid rgba(139, 30, 63, 0.3);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .business-content h3 {
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .business-list {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .business-list li {
+            padding: 0.5rem 0;
+            color: var(--text-gray);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .business-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-gold);
+            font-weight: bold;
+        }
+
+        .mission-section {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .mission-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        .mission-text {
+            color: var(--text-gray);
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            background: rgba(17, 24, 39, 0.6);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-dark);
+            padding: 3rem 0 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            text-align: center;
+            color: var(--text-gray);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-notice {
+            color: #DC2626;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-copyright {
+            font-size: 0.9rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .nav-link {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.9rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .content-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .page-title {
+                font-size: 1.8rem;
+            }
+
+            .company-name {
+                font-size: 2rem;
+            }
+
+            .company-info {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo_img {
+                width: 100px;
+            }
+
+            .nav-links {
+                gap: 0.5rem;
+            }
+
+            .page-title {
+                font-size: 1.6rem;
+            }
+
+            .company-name {
+                font-size: 1.7rem;
+            }
+
+            .content-card {
+                padding: 1.5rem;
+            }
+
+            .info-section,
+            .business-content,
+            .mission-section {
+                padding: 1.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="/" class="logo">
+                <img src="asset/img/logo_nukune.png" width="150" height="40" alt="" class="logo_img">
+            </a>
+            <nav class="nav-links">
+                <a href="member.html" class="nav-link">ログイン</a>
+                <a href="#" class="nav-link primary">新規登録</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <h1 class="page-title">会社概要</h1>
+            <p class="page-subtitle">PEDIA株式会社について</p>
+            
+            <div class="content-card">
+                <div class="company-header">
+                    <h2 class="company-name">PEDIA株式会社</h2>
+                    <p class="company-tagline">風俗業界の情報提供で、より良い出会いの場を創造する</p>
+                </div>
+
+                <div class="company-info">
+                    <div class="info-section">
+                        <h3 class="info-title">
+                            <i class="fas fa-building"></i>
+                            会社情報
+                        </h3>
+                        <div class="info-item">
+                            <span class="info-label">企業名</span>
+                            <span class="info-value">PEDIA株式会社</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">所在地</span>
+                            <span class="info-value">名古屋市千種区内山1-9-2</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">代表者名</span>
+                            <span class="info-value">桐山 一喜</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">設立年月</span>
+                            <span class="info-value">2025年6月23日</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">メール</span>
+                            <span class="info-value">info@pedia.co.jp</span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+
+                <div class="business-content">
+                    <h3>事業内容</h3>
+                    <ul class="business-list">
+                        <li>風俗業界の情報提供</li>
+                        <li>優良店舗や女性の評価システム</li>
+                        <li>各種イベントの企画・運営</li>
+                        <li>マッチングサービス「NUKUNE」の運営</li>
+                        <li>業界向けコンサルティング</li>
+                    </ul>
+                </div>
+
+                <div class="mission-section">
+                    <h3 class="mission-title">私たちのミッション</h3>
+                    <p class="mission-text">
+                        PEDIA株式会社は、風俗業界における情報の透明性と安全性を重視し、利用者の皆様により良いサービスを提供することを目指しています。適切な情報提供を通じて、業界全体の健全な発展に貢献し、すべての関係者が安心して利用できる環境を構築してまいります。
+                    </p>
+                </div>
+
+                <div class="stats-grid">
+                  
+                    <div class="stat-card">
+                        <div class="stat-number">2025</div>
+                        <div class="stat-label">設立年</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">法令遵守</div>
+                    </div>
+                 
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="privacy.html" class="footer-link">プライバシーポリシー</a>
+                    <a href="kiyaku.html" class="footer-link">利用規約</a>
+                    <a href="contact.html" class="footer-link">お問い合わせ</a>
+                    <a href="company.html" class="footer-link">会社概要</a>
+                </div>
+                <p class="footer-notice">Nukuneは成人（18歳以上）のみを対象としています。</p>
+                <p class="footer-copyright">© 2025 Nukune. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            const scrolled = window.scrollY;
+            
+            if (scrolled > 100) {
+                header.style.background = 'rgba(15, 19, 26, 0.98)';
+            } else {
+                header.style.background = 'rgba(15, 19, 26, 0.95)';
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

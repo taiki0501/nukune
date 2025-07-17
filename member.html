@@ -1,0 +1,2216 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>会員専用ページ - NUKUNE</title>
+    <meta name="description" content="NUKUNE 会員専用ページ - あなたの理想の出会いをサポートします">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #111827;
+            --accent-burgundy: #8B1E3F;
+            --accent-gold: #D4AF37;
+            --bg-dark: #0F131A;
+            --text-light: #F9FAFB;
+            --text-gray: #9CA3AF;
+            --card-bg: rgba(17, 24, 39, 0.8);
+            --border-color: rgba(212, 175, 55, 0.2);
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(15, 19, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            padding: 1rem 0;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: var(--text-light);
+        }
+
+        .logo_img {
+            width: 120px;
+            height: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--accent-gold);
+        }
+
+        .nav-link.primary {
+            background: linear-gradient(135deg, var(--accent-burgundy), #A02141);
+            color: white;
+            padding: 0.75rem 1.5rem;
+        }
+
+        .nav-link.primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(139, 30, 63, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(17, 24, 39, 0.8) 0%, 
+                rgba(139, 30, 63, 0.4) 50%, 
+                rgba(17, 24, 39, 0.9) 100%);
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 2rem;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', 'Noto Serif JP', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text-light), var(--accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            margin-bottom: 2rem;
+            color: #fff;
+            font-weight: 300;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-burgundy), #A02141);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(139, 30, 63, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--accent-gold);
+            border: 2px solid var(--accent-gold);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', 'Noto Serif JP', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Recommended Women Section */
+        .recommended-women {
+            background: linear-gradient(135deg, var(--bg-dark) 0%, rgba(17, 24, 39, 0.8) 100%);
+            position: relative;
+        }
+
+        .women-slider {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            margin: 0 -0.5rem;
+            max-width: 100%;
+        }
+
+        .women-track {
+            display: flex;
+            transition: transform 0.3s ease;
+            width: calc(100% + 1rem);
+            max-width: 100%;
+            cursor: grab;
+            user-select: none;
+        }
+
+        .woman-card {
+            min-width: calc(33.33% - 1rem); /* PC時に3枚表示（100%÷3）*/
+            max-width: calc(33.33% - 1rem);
+            margin: 0 0.5rem;
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            flex-shrink: 0;
+            cursor: grab;
+            user-select: none;
+        }
+
+        .woman-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.1);
+        }
+
+        .woman-card:first-child {
+            margin-left: 0.5rem;
+        }
+
+        .woman-card:last-child {
+            margin-right: 0.5rem;
+        }
+
+        .woman-image {
+            width: 100%;
+            height: 500px;
+            background: linear-gradient(135deg, var(--accent-burgundy), #A02141);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            position: relative;
+            overflow: hidden;
+            max-width: 100%;
+        }
+
+        .woman-image img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 0;
+            max-width: 100%;
+        }
+
+        .woman-info {
+            padding: 1.5rem;
+        }
+
+        .woman-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .woman-age {
+            color: var(--text-gray);
+            margin-bottom: 1rem;
+        }
+
+        .woman-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .woman-tag {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--accent-gold);
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        .like-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background: linear-gradient(135deg, var(--accent-burgundy), #A02141);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .like-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 30, 63, 0.3);
+        }
+
+        .like-btn.liked {
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+        }
+
+        .slider-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .slider-btn {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--accent-gold);
+            border: 2px solid var(--accent-gold);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slider-btn:hover {
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+        }
+
+        /* Matching Support Section */
+        .matching-support {
+            background: var(--primary-dark);
+        }
+
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .support-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .support-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.1);
+            border-color: var(--accent-gold);
+        }
+
+        .support-icon {
+            font-size: 3rem;
+            color: var(--accent-gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .support-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .support-description {
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        /* Blog Section */
+        .blog {
+            background: linear-gradient(135deg, rgba(139, 30, 63, 0.05) 0%, rgba(17, 24, 39, 0.8) 100%);
+        }
+
+        .blog-slider {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-track {
+            display: flex;
+            transition: transform 0.3s ease;
+            cursor: grab;
+            user-select: none;
+        }
+
+        .blog-card {
+            min-width: 350px;
+            margin: 0 1rem;
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            cursor: grab;
+            user-select: none;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.1);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, var(--accent-burgundy), #A02141);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-date {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .blog-excerpt {
+            color: var(--text-gray);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .blog-link {
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .blog-link:hover {
+            color: #F59E0B;
+        }
+
+        /* FAQ Section */
+        .faq {
+            background: var(--primary-dark);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--card-bg);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .faq-question h3 {
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .faq-icon {
+            color: var(--accent-gold);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            color: var(--text-gray);
+            line-height: 1.6;
+            display: none;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+            padding-top: 24px;
+        }
+
+        /* Upgrade Section */
+        .upgrade {
+            background: linear-gradient(135deg, rgba(139, 30, 63, 0.05) 0%, var(--bg-dark) 100%);
+        }
+
+        .upgrade-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .upgrade-card {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .upgrade-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.15);
+            border-color: var(--accent-gold);
+        }
+
+        .upgrade-header {
+            margin-bottom: 2rem;
+        }
+
+        .upgrade-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .upgrade-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .upgrade-period {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        .upgrade-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        .upgrade-features li {
+            padding: 0.5rem 0;
+            color: var(--text-gray);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .upgrade-features li::before {
+            content: '✓';
+            color: var(--accent-gold);
+            font-weight: bold;
+        }
+
+        .upgrade-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--accent-burgundy), #A02141);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .upgrade-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139, 30, 63, 0.3);
+        }
+
+        /* Sponsors Section */
+        .sponsors {
+            background: linear-gradient(135deg, rgba(139, 30, 63, 0.03) 0%, var(--bg-dark) 100%);
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            padding: 3rem 0;
+        }
+
+        .sponsors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+            align-items: center;
+            justify-items: center;
+        }
+
+        .sponsor-card {
+                background: var(--card-bg);
+    padding: 3rem 2rem;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    display: flex
+;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1300px;
+    height: inherit;
+    overflow: hidden;
+    position: relative;
+        }
+
+        .sponsor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.1);
+            border-color: var(--accent-gold);
+        }
+
+        .sponsor-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent 0%, rgba(212, 175, 55, 0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .sponsor-card:hover::before {
+            opacity: 1;
+        }
+
+        .sponsor-image {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sponsor-card:hover .sponsor-image {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-dark);
+            padding: 3rem 0 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            text-align: center;
+            color: var(--text-gray);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-notice {
+            color: #DC2626;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-copyright {
+            font-size: 0.9rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .sp{
+            display: none;
+        }
+
+        /* Scroll Animation Styles */
+        .scroll-fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .scroll-fade-in.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-slide-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .scroll-slide-left.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scroll-slide-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .scroll-slide-right.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scroll-scale-up {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .scroll-scale-up.animate {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .scroll-stagger {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .scroll-stagger.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Parallax container */
+        .parallax-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .parallax-element {
+            will-change: transform;
+        }
+
+        /* Counter animation */
+        .counter-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            display: inline-block;
+        }
+
+        /* Typing effect */
+        .typing-text {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid var(--accent-gold);
+            animation: typing 3s steps(40), blink 1s infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            0%, 50% { border-color: var(--accent-gold); }
+            51%, 100% { border-color: transparent; }
+        }
+
+        /* Enhanced hover effects */
+        .enhanced-hover {
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .enhanced-hover:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+        }
+
+        /* Reveal animation for sections */
+        .reveal-section {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .reveal-section.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .sp{
+                display: block;
+            }
+			
+			.woman-card {
+                min-width: 280px;
+                max-width: 280px;
+                margin: 0 0.5rem;
+                overflow: hidden;
+            }
+			
+			.woman-image {
+                width: 100%;
+                max-width: 100%;
+                height: 260px;
+                overflow: hidden;
+                position: relative;
+            }
+            
+			.woman-image img{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: top center;
+                max-width: 100%;
+            }
+            
+            .header-container {
+                padding: 0 1rem;
+            }
+
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.4rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .nav-link {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.9rem;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                padding: 0.875rem 1.5rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .support-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .blog-card {
+                min-width: 280px;
+            }
+
+            .upgrade-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .sponsors-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .sponsor-card {
+                max-width: 100%;
+                height: 140px;
+                padding: 0.5rem 0.5rem;
+            }
+
+            .sponsor-image {
+                height: 90px;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .faq-question h3 {
+                color: var(--text-light);
+                font-weight: 600;
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo_img {
+                width: 100px;
+            }
+
+            .nav-links {
+                gap: 0.5rem;
+            }
+
+            .hero-title {
+                font-size: 1.7rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.4rem;
+            }
+
+            .support-card,
+            .upgrade-card {
+                padding: 1.5rem;
+            }
+
+            .woman-card {
+                min-width: 260px;
+                max-width: 260px;
+                margin: 0 0.5rem;
+                overflow: hidden;
+            }
+
+            .woman-card:first-child {
+                margin-left: 0;
+            }
+
+            			.woman-image {
+                width: 100%;
+                max-width: 100%;
+                height: 260px;
+                overflow: hidden;
+                position: relative;
+            }
+
+            .woman-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .women-slider {
+                margin: 0;
+                padding-left: 1rem;
+                max-width: 100%;
+                overflow-x: hidden;
+            }
+
+            .women-track {
+                width: 100%;
+            }
+
+            .blog-card {
+                min-width: 250px;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .woman-card {
+                min-width: 240px;
+                max-width: 240px;
+                margin: 0 0.3rem;
+                overflow: hidden;
+            }
+
+            .woman-image {
+                width: 100%;
+                max-width: 100%;
+                height: 260px;
+                overflow: hidden;
+                position: relative;
+            }
+
+            .woman-image img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: top center;
+                max-width: 100%;
+            }
+
+            .women-slider {
+                margin: 0;
+                padding-left: 0.5rem;
+                max-width: 100%;
+                overflow-x: hidden;
+            }
+
+            .woman-info {
+                padding: 1rem;
+            }
+
+            .woman-name {
+                font-size: 1.1rem;
+                margin-bottom: 0.3rem;
+            }
+
+            .woman-age {
+                font-size: 0.9rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .woman-tag {
+                font-size: 0.7rem;
+                padding: 0.2rem 0.5rem;
+                margin: 0.1rem;
+            }
+
+            .like-btn {
+                font-size: 0.9rem;
+                padding: 0.5rem 1rem;
+                margin-top: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="/" class="logo">
+                <img src="asset/img/logo_nukune.png" width="150" height="40" alt="" class="logo_img">
+            </a>
+            <nav class="nav-links">
+                <a href="/" class="nav-link">ログアウト</a>
+                <a href="#" class="nav-link primary">マイページ</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero parallax-container">
+        <video autoplay muted loop playsinline webkit-playsinline class="hero-video">
+            <source src="asset/mp4/gal.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">今日の運命の出会いを。</h1>
+            <p class="hero-subtitle">あなたにぴったりの女性が<br class="sp">新しく登録されました</p>
+            <div class="hero-cta">
+                <a href="#" class="btn btn-primary">
+                    <i class="fas fa-search"></i>
+                    新しい女性を探す
+                </a>
+                <a href="#" class="btn btn-secondary">
+                    <i class="fas fa-heart"></i>
+                    マッチング一覧
+                </a>
+            </div>
+        </div>
+    </section>
+
+	   <section class="section sponsors">
+        <div class="container0">
+            <div class="sponsors-grid">
+                <div class="sponsor-card">
+                    <img src="asset/img/banner2.png" alt="パートナー企業1" class="sponsor-image">
+                </div>
+            </div>
+        </div>
+    </section>
+	
+    <!-- Recommended Women Section -->
+    <section class="section recommended-women parallax-container">
+        <div class="container">
+            <h2 class="section-title scroll-fade-in">あなたにオススメの女性</h2>
+            <p class="section-subtitle scroll-fade-in">AIがあなたの好みを分析して、理想の女性をご提案します</p>
+            <div class="women-slider">
+                <div class="women-track" id="womenTrack">
+                    <div class="woman-card scroll-stagger enhanced-hover">
+                        <div class="woman-image"><img src="asset/img/girl01.png" alt="美咲" draggable="false"></div>
+                        <div class="woman-info">
+                            <h3 class="woman-name">美咲</h3>
+                            <p class="woman-age">25歳 東京都</p>
+                            <div class="woman-tags">
+                                <span class="woman-tag">優しい</span>
+                                <span class="woman-tag">美人</span>
+                                <span class="woman-tag">話し上手</span>
+                            </div>
+                            <button class="like-btn" onclick="toggleLike(this)">
+                                <i class="fas fa-heart"></i>
+                                いいね！
+                            </button>
+                        </div>
+                    </div>
+                    <div class="woman-card scroll-stagger enhanced-hover">
+                        <div class="woman-image"><img src="asset/img/girl02.png" alt="あやか" draggable="false"></div>
+                        <div class="woman-info">
+                            <h3 class="woman-name">あやか</h3>
+                            <p class="woman-age">23歳 東京都</p>
+                            <div class="woman-tags">
+                                <span class="woman-tag">癒し系</span>
+                                <span class="woman-tag">スタイル抜群</span>
+                            </div>
+                            <button class="like-btn" onclick="toggleLike(this)">
+                                <i class="fas fa-heart"></i>
+                                いいね！
+                            </button>
+                        </div>
+                    </div>
+                    <div class="woman-card scroll-stagger enhanced-hover">
+                        <div class="woman-image"><img src="asset/img/girl03.png" alt="りな" draggable="false"></div>
+                        <div class="woman-info">
+                            <h3 class="woman-name">りな</h3>
+                            <p class="woman-age">27歳 東京都</p>
+                            <div class="woman-tags">
+                                <span class="woman-tag">大人の魅力</span>
+                                <span class="woman-tag">上品</span>
+                            </div>
+                            <button class="like-btn" onclick="toggleLike(this)">
+                                <i class="fas fa-heart"></i>
+                                いいね！
+                            </button>
+                        </div>
+                    </div>
+                    <div class="woman-card scroll-stagger enhanced-hover">
+                        <div class="woman-image"><img src="asset/img/girl04.png" alt="ゆい" draggable="false"></div>
+                        <div class="woman-info">
+                            <h3 class="woman-name">ゆい</h3>
+                            <p class="woman-age">22歳 東京都</p>
+                            <div class="woman-tags">
+                                <span class="woman-tag">元気</span>
+                                <span class="woman-tag">可愛い</span>
+                            </div>
+                            <button class="like-btn" onclick="toggleLike(this)">
+                                <i class="fas fa-heart"></i>
+                                いいね！
+                            </button>
+                        </div>
+                    </div>
+                    <div class="woman-card scroll-stagger enhanced-hover">
+                        <div class="woman-image"><img src="asset/img/girl05.png" alt="さくら" draggable="false"></div>
+                        <div class="woman-info">
+                            <h3 class="woman-name">さくら</h3>
+                            <p class="woman-age">26歳 東京都</p>
+                            <div class="woman-tags">
+                                <span class="woman-tag">知的</span>
+                                <span class="woman-tag">清楚</span>
+                            </div>
+                            <button class="like-btn" onclick="toggleLike(this)">
+                                <i class="fas fa-heart"></i>
+                                いいね！
+                            </button>
+                        </div>
+                    </div>
+                    <div class="woman-card scroll-stagger enhanced-hover">
+                        <div class="woman-image"><img src="asset/img/girl06.png" alt="まい" draggable="false"></div>
+                        <div class="woman-info">
+                            <h3 class="woman-name">まい</h3>
+                            <p class="woman-age">24歳 東京都</p>
+                            <div class="woman-tags">
+                                <span class="woman-tag">セクシー</span>
+                                <span class="woman-tag">積極的</span>
+                            </div>
+                            <button class="like-btn" onclick="toggleLike(this)">
+                                <i class="fas fa-heart"></i>
+                                いいね！
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-nav women-slider-nav">
+                <button class="slider-btn women-slider-btn" onclick="slideWomen(-1); pauseWomenAutoSlide();">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="slider-btn women-slider-btn" onclick="slideWomen(1); pauseWomenAutoSlide();">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+	
+	
+	
+	 <section class="section sponsors">
+        <div class="container0">
+            <div class="sponsors-grid">
+                <div class="sponsor-card">
+                    <img src="asset/img/banner3.png" alt="パートナー企業1" class="sponsor-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Matching Support Section -->
+    <section class="section matching-support">
+        <div class="container">
+            <h2 class="section-title scroll-fade-in">マッチングをサポート</h2>
+            <p class="section-subtitle scroll-fade-in">あなたの理想の出会いを見つけるための強力なサポート機能</p>
+            <div class="support-grid">
+                <div class="support-card scroll-stagger enhanced-hover">
+                    <div class="support-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="support-title">AIサポート</h3>
+                    <p class="support-description">最新のAI技術があなたの好みを学習し、理想の女性を自動で提案。マッチング率を大幅に向上させます。</p>
+                </div>
+                <div class="support-card scroll-stagger enhanced-hover">
+                    <div class="support-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3 class="support-title">近くの嬢を表示</h3>
+                    <p class="support-description">GPS機能を使って、あなたの近くにいる女性を優先的に表示。すぐに会える相手を見つけられます。</p>
+                </div>
+                <div class="support-card scroll-stagger enhanced-hover">
+                    <div class="support-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="support-title">即マッチング</h3>
+                    <p class="support-description">お互いにいいね！した瞬間、即座にマッチング成立。待ち時間なく、スムーズな出会いを実現します。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="section blog">
+        <div class="container">
+            <h2 class="section-title scroll-fade-in">最新コラム</h2>
+            <p class="section-subtitle scroll-fade-in">出会いのコツや体験談など、役立つ情報をお届けします</p>
+            <div class="blog-slider">
+                <div class="blog-track" id="blogTrack">
+                    <div class="blog-card scroll-stagger enhanced-hover">
+                        <div class="blog-image">記事画像</div>
+                        <div class="blog-content">
+                            <div class="blog-date">2025.01.15</div>
+                            <h3 class="blog-title">初回デートを成功させる5つのコツ</h3>
+                            <p class="blog-excerpt">初めての出会いで緊張してしまう方必見！相手に好印象を与える方法を詳しく解説します。</p>
+                            <a href="#" class="blog-link">
+                                続きを読む
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="blog-card scroll-stagger enhanced-hover">
+                        <div class="blog-image">記事画像</div>
+                        <div class="blog-content">
+                            <div class="blog-date">2025.01.12</div>
+                            <h3 class="blog-title">プロフィール写真の撮り方講座</h3>
+                            <p class="blog-excerpt">マッチング率を上げる写真の撮り方や、魅力的に見える角度などをプロが伝授します。</p>
+                            <a href="#" class="blog-link">
+                                続きを読む
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="blog-card scroll-stagger enhanced-hover">
+                        <div class="blog-image">記事画像</div>
+                        <div class="blog-content">
+                            <div class="blog-date">2025.01.10</div>
+                            <h3 class="blog-title">理想の関係を築くコミュニケーション術</h3>
+                            <p class="blog-excerpt">長続きする関係を築くために必要なコミュニケーションスキルを身につけましょう。</p>
+                            <a href="#" class="blog-link">
+                                続きを読む
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="blog-card scroll-stagger enhanced-hover">
+                        <div class="blog-image">記事画像</div>
+                        <div class="blog-content">
+                            <div class="blog-date">2025.01.08</div>
+                            <h3 class="blog-title">安全な出会いのための注意点</h3>
+                            <p class="blog-excerpt">安心してサービスを利用するための基本的な注意点や、トラブル回避の方法をご紹介。</p>
+                            <a href="#" class="blog-link">
+                                続きを読む
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-nav">
+                <button class="slider-btn" onclick="slideBlog(-1)">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="slider-btn" onclick="slideBlog(1)">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section faq">
+        <div class="container">
+            <h2 class="section-title scroll-fade-in">会員向けよくあるご質問</h2>
+            <div class="faq-container">
+                <div class="faq-item scroll-stagger">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>マッチング後はどうすればいいですか？</h3>
+                        <i class="fas fa-plus faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>マッチング成立後は、メッセージ機能を使って直接やりとりできます。相手のプロフィールを参考に、自然な会話から始めてみましょう。</p>
+                    </div>
+                </div>
+                <div class="faq-item scroll-stagger">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>いいね！を送った相手に自分が分かりますか？</h3>
+                        <i class="fas fa-plus faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>いいね！を送った時点では相手に通知されますが、お互いにいいね！するまでは詳細な情報は表示されません。</p>
+                    </div>
+                </div>
+                <div class="faq-item scroll-stagger">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>ブロック機能はありますか？</h3>
+                        <i class="fas fa-plus faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>はい、不適切な行動をとる相手をブロックすることができます。ブロックした相手とは今後やりとりできなくなります。</p>
+                    </div>
+                </div>
+                <div class="faq-item scroll-stagger">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>プレミアム機能にはどんなものがありますか？</h3>
+                        <i class="fas fa-plus faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>プレミアム会員は、無制限いいね！、既読機能、プロフィール優先表示などの特典をご利用いただけます。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upgrade Section -->
+    <section class="section upgrade">
+        <div class="container">
+            <h2 class="section-title scroll-fade-in">プレミアムにアップグレード</h2>
+            <p class="section-subtitle scroll-fade-in">より多くの機能を利用して、理想の出会いを見つけましょう</p>
+            <div class="upgrade-grid">
+                <div class="upgrade-card scroll-stagger enhanced-hover">
+                    <div class="upgrade-header">
+                        <h3 class="upgrade-title">ベーシック</h3>
+                        <div class="upgrade-price counter-number" data-count="2000">¥0</div>
+                        <div class="upgrade-period">現在のプラン</div>
+                    </div>
+                    <ul class="upgrade-features">
+                        <li>1日5回のいいね！</li>
+                        <li>基本的な検索機能</li>
+                        <li>プロフィール閲覧</li>
+                        <li>マッチング機能</li>
+                        <li>基本サポート</li>
+                    </ul>
+                    <button class="upgrade-btn" disabled>現在のプラン</button>
+                </div>
+                <div class="upgrade-card scroll-stagger enhanced-hover">
+                    <div class="upgrade-header">
+                        <h3 class="upgrade-title">プレミアム</h3>
+                        <div class="upgrade-price counter-number" data-count="2980">¥0</div>
+                        <div class="upgrade-period">月額</div>
+                    </div>
+                    <ul class="upgrade-features">
+                        <li>無制限いいね！</li>
+                        <li>高度な検索機能</li>
+                        <li>既読機能</li>
+                        <li>プロフィール優先表示</li>
+                        <li>優先サポート</li>
+                        <li>特別コンテンツ</li>
+                    </ul>
+                    <button class="upgrade-btn">今すぐアップグレード</button>
+                </div>
+                <div class="upgrade-card scroll-stagger enhanced-hover">
+                    <div class="upgrade-header">
+                        <h3 class="upgrade-title">VIP</h3>
+                        <div class="upgrade-price counter-number" data-count="4980">¥0</div>
+                        <div class="upgrade-period">月額</div>
+                    </div>
+                    <ul class="upgrade-features">
+                        <li>プレミアム全機能</li>
+                        <li>専用コンシェルジュ</li>
+                        <li>VIP限定イベント</li>
+                        <li>優先マッチング</li>
+                        <li>24時間サポート</li>
+                        <li>特別バッジ表示</li>
+                    </ul>
+                    <button class="upgrade-btn">VIPになる</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="privacy.html" class="footer-link">プライバシーポリシー</a>
+                    <a href="kiyaku.html" class="footer-link">利用規約</a>
+                    <a href="contact.html" class="footer-link">お問い合わせ</a>
+                    <a href="company.html" class="footer-link">会社概要</a>
+                </div>
+                <p class="footer-notice">Nukuneは成人（18歳以上）のみを対象としています。</p>
+                <p class="footer-copyright">© 2025 Nukune. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ toggle function
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            const isActive = faqItem.classList.contains('active');
+            
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            if (!isActive) {
+                faqItem.classList.add('active');
+            }
+        }
+
+        // Like button function
+        function toggleLike(button) {
+            if (button.classList.contains('liked')) {
+                button.classList.remove('liked');
+                button.innerHTML = '<i class="fas fa-heart"></i> いいね！';
+                button.style.background = 'linear-gradient(135deg, var(--accent-burgundy), #A02141)';
+            } else {
+                button.classList.add('liked');
+                button.innerHTML = '<i class="fas fa-heart"></i> いいね！済み';
+                button.style.background = 'var(--accent-gold)';
+                // Match notification
+                setTimeout(() => {
+                    alert('マッチングしました！🎉');
+                }, 500);
+            }
+        }
+
+        // Women slider
+        let womenCurrentSlide = 0;
+        const womenCards = document.querySelectorAll('.woman-card');
+        const womenTrack = document.getElementById('womenTrack');
+
+        function slideWomen(direction) {
+            const isMobile = window.innerWidth <= 768;
+            const containerWidth = document.querySelector('.women-slider').offsetWidth;
+            let cardWidth, visibleCards;
+            
+            if (isMobile) {
+                cardWidth = 250 + 16; // モバイル時は従来通り
+                visibleCards = Math.floor(containerWidth / cardWidth);
+            } else {
+                // PC時は3枚表示固定
+                cardWidth = containerWidth / 3; // 100%を3分割
+                visibleCards = 3;
+            }
+            
+            const maxSlide = Math.max(0, womenCards.length - visibleCards);
+            
+            womenCurrentSlide += direction;
+            
+            // ループ機能
+            if (womenCurrentSlide < 0) {
+                womenCurrentSlide = maxSlide;
+            } else if (womenCurrentSlide > maxSlide) {
+                womenCurrentSlide = 0;
+            }
+            
+            const translateX = womenCurrentSlide * cardWidth;
+            womenTrack.style.transform = `translateX(-${translateX}px)`;
+        }
+
+        // Blog slider
+        let blogCurrentSlide = 0;
+        const blogCards = document.querySelectorAll('.blog-card');
+        const blogTrack = document.getElementById('blogTrack');
+
+        function slideBlog(direction) {
+            const cardWidth = window.innerWidth <= 768 ? 280 : 370;
+            const visibleCards = window.innerWidth <= 768 ? 1 : 3;
+            const maxSlide = Math.max(0, blogCards.length - visibleCards);
+            
+            blogCurrentSlide += direction;
+            
+            if (blogCurrentSlide < 0) {
+                blogCurrentSlide = maxSlide;
+            } else if (blogCurrentSlide > maxSlide) {
+                blogCurrentSlide = 0;
+            }
+            
+            blogTrack.style.transform = `translateX(-${blogCurrentSlide * cardWidth}px)`;
+        }
+
+        // Header scroll effect with parallax
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            const scrolled = window.scrollY;
+            
+            if (scrolled > 100) {
+                header.style.background = 'rgba(15, 19, 26, 0.98)';
+            } else {
+                header.style.background = 'rgba(15, 19, 26, 0.95)';
+            }
+
+            // Parallax effect for hero video
+            const heroVideo = document.querySelector('.hero-video');
+            if (heroVideo) {
+                const parallaxSpeed = 0.5;
+                heroVideo.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
+            }
+        });
+
+        // Auto-slide for women cards
+        let womenAutoSlide = setInterval(() => {
+            slideWomen(1);
+        }, 4000);
+
+        // 手動操作時に自動スライドを一時停止
+        function pauseWomenAutoSlide() {
+            clearInterval(womenAutoSlide);
+            womenAutoSlide = setInterval(() => {
+                slideWomen(1);
+            }, 4000);
+        }
+
+        // スライドボタンにイベントリスナーを追加
+        document.querySelectorAll('.women-slider-btn').forEach(btn => {
+            btn.addEventListener('click', pauseWomenAutoSlide);
+        });
+
+        // ウィンドウリサイズ時の処理
+        window.addEventListener('resize', () => {
+            womenCurrentSlide = 0;
+            womenTrack.style.transform = 'translateX(0px)';
+        });
+
+        // Interactive drag functionality for women slider
+        let womenStartX = 0;
+        let womenStartY = 0;
+        let womenCurrentX = 0;
+        let womenIsDragging = false;
+        let womenInitialTransform = 0;
+        let womenMinSwipeDistance = 50;
+
+        function addWomenTouchEvents(element) {
+            element.addEventListener('touchstart', (e) => {
+                womenStartX = e.touches[0].clientX;
+                womenStartY = e.touches[0].clientY;
+                womenCurrentX = womenStartX;
+                womenIsDragging = true;
+                
+                // Get current transform value
+                const currentTransform = womenTrack.style.transform;
+                if (currentTransform) {
+                    const match = currentTransform.match(/translateX\((-?\d+(?:\.\d+)?)px\)/);
+                    womenInitialTransform = match ? parseFloat(match[1]) : 0;
+                } else {
+                    womenInitialTransform = 0;
+                }
+                
+                // Disable transition for smooth dragging
+                womenTrack.style.transition = 'none';
+            });
+
+            element.addEventListener('touchmove', (e) => {
+                if (!womenIsDragging) return;
+                
+                const currentX = e.touches[0].clientX;
+                const currentY = e.touches[0].clientY;
+                const deltaX = currentX - womenStartX;
+                const deltaY = currentY - womenStartY;
+                
+                // Check if horizontal movement is greater than vertical
+                if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
+                    e.preventDefault(); // Prevent scrolling only when dragging horizontally
+                    
+                    womenCurrentX = currentX;
+                    const newTransform = womenInitialTransform + deltaX;
+                    
+                    // Apply drag resistance at boundaries
+                    const isMobile = window.innerWidth <= 768;
+                    const containerWidth = document.querySelector('.women-slider').offsetWidth;
+                    let cardWidth;
+                    
+                    if (isMobile) {
+                        cardWidth = 250 + 16;
+                    } else {
+                        cardWidth = containerWidth / 3;
+                    }
+                    
+                    const maxTransform = -(womenCards.length - (isMobile ? 1 : 3)) * cardWidth;
+                    let resistedTransform = newTransform;
+                    
+                    // Add resistance at boundaries
+                    if (newTransform > 0) {
+                        resistedTransform = newTransform * 0.3;
+                    } else if (newTransform < maxTransform) {
+                        resistedTransform = maxTransform + (newTransform - maxTransform) * 0.3;
+                    }
+                    
+                    womenTrack.style.transform = `translateX(${resistedTransform}px)`;
+                }
+            });
+
+            element.addEventListener('touchend', (e) => {
+                if (!womenIsDragging) return;
+                
+                const deltaX = womenCurrentX - womenStartX;
+                const deltaY = e.changedTouches[0].clientY - womenStartY;
+                
+                // Re-enable transition
+                womenTrack.style.transition = 'transform 0.3s ease';
+                
+                // Check if horizontal movement is greater than vertical
+                if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) >= womenMinSwipeDistance) {
+                    if (deltaX < 0) {
+                        // Swipe left - next slide
+                        slideWomen(1);
+                    } else {
+                        // Swipe right - previous slide
+                        slideWomen(-1);
+                    }
+                    pauseWomenAutoSlide();
+                } else {
+                    // Snap back to current position
+                    const isMobile = window.innerWidth <= 768;
+                    const containerWidth = document.querySelector('.women-slider').offsetWidth;
+                    let cardWidth;
+                    
+                    if (isMobile) {
+                        cardWidth = 250 + 16;
+                    } else {
+                        cardWidth = containerWidth / 3;
+                    }
+                    
+                    const translateX = womenCurrentSlide * cardWidth;
+                    womenTrack.style.transform = `translateX(-${translateX}px)`;
+                }
+                
+                womenIsDragging = false;
+            });
+        }
+
+        // Apply touch events to women slider
+        addWomenTouchEvents(womenTrack);
+        document.querySelectorAll('.woman-card').forEach(card => {
+            addWomenTouchEvents(card);
+        });
+
+        // Mouse drag functionality for desktop
+        let womenMouseDown = false;
+        let womenMouseStartX = 0;
+        let womenMouseCurrentX = 0;
+        let womenMouseInitialTransform = 0;
+
+        function addWomenMouseEvents(element) {
+            element.addEventListener('mousedown', (e) => {
+                womenMouseDown = true;
+                womenMouseStartX = e.clientX;
+                womenMouseCurrentX = womenMouseStartX;
+                
+                // Get current transform value
+                const currentTransform = womenTrack.style.transform;
+                if (currentTransform) {
+                    const match = currentTransform.match(/translateX\((-?\d+(?:\.\d+)?)px\)/);
+                    womenMouseInitialTransform = match ? parseFloat(match[1]) : 0;
+                } else {
+                    womenMouseInitialTransform = 0;
+                }
+                
+                // Disable transition for smooth dragging
+                womenTrack.style.transition = 'none';
+                womenTrack.style.cursor = 'grabbing';
+            });
+
+            element.addEventListener('mousemove', (e) => {
+                if (!womenMouseDown) return;
+                
+                const deltaX = e.clientX - womenMouseStartX;
+                womenMouseCurrentX = e.clientX;
+                const newTransform = womenMouseInitialTransform + deltaX;
+                
+                // Apply drag resistance at boundaries
+                const isMobile = window.innerWidth <= 768;
+                const containerWidth = document.querySelector('.women-slider').offsetWidth;
+                let cardWidth;
+                
+                if (isMobile) {
+                    cardWidth = 250 + 16;
+                } else {
+                    cardWidth = containerWidth / 3;
+                }
+                
+                const maxTransform = -(womenCards.length - (isMobile ? 1 : 3)) * cardWidth;
+                let resistedTransform = newTransform;
+                
+                // Add resistance at boundaries
+                if (newTransform > 0) {
+                    resistedTransform = newTransform * 0.3;
+                } else if (newTransform < maxTransform) {
+                    resistedTransform = maxTransform + (newTransform - maxTransform) * 0.3;
+                }
+                
+                womenTrack.style.transform = `translateX(${resistedTransform}px)`;
+            });
+
+            element.addEventListener('mouseup', (e) => {
+                if (!womenMouseDown) return;
+                
+                const deltaX = womenMouseCurrentX - womenMouseStartX;
+                
+                // Re-enable transition
+                womenTrack.style.transition = 'transform 0.3s ease';
+                womenTrack.style.cursor = 'grab';
+                
+                // Check if movement is significant
+                if (Math.abs(deltaX) >= womenMinSwipeDistance) {
+                    if (deltaX < 0) {
+                        // Drag left - next slide
+                        slideWomen(1);
+                    } else {
+                        // Drag right - previous slide
+                        slideWomen(-1);
+                    }
+                    pauseWomenAutoSlide();
+                } else {
+                    // Snap back to current position
+                    const isMobile = window.innerWidth <= 768;
+                    const containerWidth = document.querySelector('.women-slider').offsetWidth;
+                    let cardWidth;
+                    
+                    if (isMobile) {
+                        cardWidth = 250 + 16;
+                    } else {
+                        cardWidth = containerWidth / 3;
+                    }
+                    
+                    const translateX = womenCurrentSlide * cardWidth;
+                    womenTrack.style.transform = `translateX(-${translateX}px)`;
+                }
+                
+                womenMouseDown = false;
+            });
+
+            element.addEventListener('mouseleave', (e) => {
+                if (womenMouseDown) {
+                    womenTrack.style.transition = 'transform 0.3s ease';
+                    womenTrack.style.cursor = 'grab';
+                    
+                    // Snap back to current position
+                    const isMobile = window.innerWidth <= 768;
+                    const containerWidth = document.querySelector('.women-slider').offsetWidth;
+                    let cardWidth;
+                    
+                    if (isMobile) {
+                        cardWidth = 250 + 16;
+                    } else {
+                        cardWidth = containerWidth / 3;
+                    }
+                    
+                    const translateX = womenCurrentSlide * cardWidth;
+                    womenTrack.style.transform = `translateX(-${translateX}px)`;
+                    
+                    womenMouseDown = false;
+                }
+            });
+        }
+
+        // Apply mouse events to women slider
+        addWomenMouseEvents(womenTrack);
+        document.querySelectorAll('.woman-card').forEach(card => {
+            addWomenMouseEvents(card);
+        });
+
+        // Interactive drag functionality for blog slider
+        let blogStartX = 0;
+        let blogStartY = 0;
+        let blogCurrentX = 0;
+        let blogIsDragging = false;
+        let blogInitialTransform = 0;
+        let blogMinSwipeDistance = 50;
+
+        function addBlogTouchEvents(element) {
+            element.addEventListener('touchstart', (e) => {
+                blogStartX = e.touches[0].clientX;
+                blogStartY = e.touches[0].clientY;
+                blogCurrentX = blogStartX;
+                blogIsDragging = true;
+                
+                // Get current transform value
+                const currentTransform = blogTrack.style.transform;
+                if (currentTransform) {
+                    const match = currentTransform.match(/translateX\((-?\d+(?:\.\d+)?)px\)/);
+                    blogInitialTransform = match ? parseFloat(match[1]) : 0;
+                } else {
+                    blogInitialTransform = 0;
+                }
+                
+                // Disable transition for smooth dragging
+                blogTrack.style.transition = 'none';
+            });
+
+            element.addEventListener('touchmove', (e) => {
+                if (!blogIsDragging) return;
+                
+                const currentX = e.touches[0].clientX;
+                const currentY = e.touches[0].clientY;
+                const deltaX = currentX - blogStartX;
+                const deltaY = currentY - blogStartY;
+                
+                // Check if horizontal movement is greater than vertical
+                if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
+                    e.preventDefault(); // Prevent scrolling only when dragging horizontally
+                    
+                    blogCurrentX = currentX;
+                    const newTransform = blogInitialTransform + deltaX;
+                    
+                    // Apply drag resistance at boundaries
+                    const cardWidth = window.innerWidth <= 768 ? 280 : 370;
+                    const visibleCards = window.innerWidth <= 768 ? 1 : 3;
+                    const maxTransform = -(blogCards.length - visibleCards) * cardWidth;
+                    let resistedTransform = newTransform;
+                    
+                    // Add resistance at boundaries
+                    if (newTransform > 0) {
+                        resistedTransform = newTransform * 0.3;
+                    } else if (newTransform < maxTransform) {
+                        resistedTransform = maxTransform + (newTransform - maxTransform) * 0.3;
+                    }
+                    
+                    blogTrack.style.transform = `translateX(${resistedTransform}px)`;
+                }
+            });
+
+            element.addEventListener('touchend', (e) => {
+                if (!blogIsDragging) return;
+                
+                const deltaX = blogCurrentX - blogStartX;
+                const deltaY = e.changedTouches[0].clientY - blogStartY;
+                
+                // Re-enable transition
+                blogTrack.style.transition = 'transform 0.3s ease';
+                
+                // Check if horizontal movement is greater than vertical
+                if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) >= blogMinSwipeDistance) {
+                    if (deltaX < 0) {
+                        // Swipe left - next slide
+                        slideBlog(1);
+                    } else {
+                        // Swipe right - previous slide
+                        slideBlog(-1);
+                    }
+                } else {
+                    // Snap back to current position
+                    const cardWidth = window.innerWidth <= 768 ? 280 : 370;
+                    blogTrack.style.transform = `translateX(-${blogCurrentSlide * cardWidth}px)`;
+                }
+                
+                blogIsDragging = false;
+            });
+        }
+
+        // Mouse drag functionality for blog slider
+        let blogMouseDown = false;
+        let blogMouseStartX = 0;
+        let blogMouseCurrentX = 0;
+        let blogMouseInitialTransform = 0;
+
+        function addBlogMouseEvents(element) {
+            element.addEventListener('mousedown', (e) => {
+                blogMouseDown = true;
+                blogMouseStartX = e.clientX;
+                blogMouseCurrentX = blogMouseStartX;
+                
+                // Get current transform value
+                const currentTransform = blogTrack.style.transform;
+                if (currentTransform) {
+                    const match = currentTransform.match(/translateX\((-?\d+(?:\.\d+)?)px\)/);
+                    blogMouseInitialTransform = match ? parseFloat(match[1]) : 0;
+                } else {
+                    blogMouseInitialTransform = 0;
+                }
+                
+                // Disable transition for smooth dragging
+                blogTrack.style.transition = 'none';
+                blogTrack.style.cursor = 'grabbing';
+            });
+
+            element.addEventListener('mousemove', (e) => {
+                if (!blogMouseDown) return;
+                
+                const deltaX = e.clientX - blogMouseStartX;
+                blogMouseCurrentX = e.clientX;
+                const newTransform = blogMouseInitialTransform + deltaX;
+                
+                // Apply drag resistance at boundaries
+                const cardWidth = window.innerWidth <= 768 ? 280 : 370;
+                const visibleCards = window.innerWidth <= 768 ? 1 : 3;
+                const maxTransform = -(blogCards.length - visibleCards) * cardWidth;
+                let resistedTransform = newTransform;
+                
+                // Add resistance at boundaries
+                if (newTransform > 0) {
+                    resistedTransform = newTransform * 0.3;
+                } else if (newTransform < maxTransform) {
+                    resistedTransform = maxTransform + (newTransform - maxTransform) * 0.3;
+                }
+                
+                blogTrack.style.transform = `translateX(${resistedTransform}px)`;
+            });
+
+            element.addEventListener('mouseup', (e) => {
+                if (!blogMouseDown) return;
+                
+                const deltaX = blogMouseCurrentX - blogMouseStartX;
+                
+                // Re-enable transition
+                blogTrack.style.transition = 'transform 0.3s ease';
+                blogTrack.style.cursor = 'grab';
+                
+                // Check if movement is significant
+                if (Math.abs(deltaX) >= blogMinSwipeDistance) {
+                    if (deltaX < 0) {
+                        // Drag left - next slide
+                        slideBlog(1);
+                    } else {
+                        // Drag right - previous slide
+                        slideBlog(-1);
+                    }
+                } else {
+                    // Snap back to current position
+                    const cardWidth = window.innerWidth <= 768 ? 280 : 370;
+                    blogTrack.style.transform = `translateX(-${blogCurrentSlide * cardWidth}px)`;
+                }
+                
+                blogMouseDown = false;
+            });
+
+            element.addEventListener('mouseleave', (e) => {
+                if (blogMouseDown) {
+                    blogTrack.style.transition = 'transform 0.3s ease';
+                    blogTrack.style.cursor = 'grab';
+                    
+                    // Snap back to current position
+                    const cardWidth = window.innerWidth <= 768 ? 280 : 370;
+                    blogTrack.style.transform = `translateX(-${blogCurrentSlide * cardWidth}px)`;
+                    
+                    blogMouseDown = false;
+                }
+            });
+        }
+
+        // Apply events to blog slider
+        addBlogTouchEvents(blogTrack);
+        addBlogMouseEvents(blogTrack);
+        document.querySelectorAll('.blog-card').forEach(card => {
+            addBlogTouchEvents(card);
+            addBlogMouseEvents(card);
+        });
+
+        // Auto-slide for blog cards
+        setInterval(() => {
+            slideBlog(1);
+        }, 7000);
+
+        // Upgrade button click
+        document.querySelectorAll('.upgrade-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                if (!this.disabled) {
+                    alert('アップグレード機能は準備中です。');
+                }
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all scroll animation elements
+        document.querySelectorAll('.scroll-fade-in, .scroll-slide-left, .scroll-slide-right, .scroll-scale-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Stagger animation observer
+        const staggerObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const staggerElements = entry.target.querySelectorAll('.scroll-stagger');
+                    staggerElements.forEach((el, index) => {
+                        setTimeout(() => {
+                            el.classList.add('animate');
+                        }, index * 100); // 100ms delay between each element
+                    });
+                }
+            });
+        }, observerOptions);
+
+        // Observe containers with stagger elements
+        document.querySelectorAll('.women-track, .support-grid, .blog-track, .faq-container, .upgrade-grid').forEach(container => {
+            staggerObserver.observe(container);
+        });
+
+        // Magnetic effect for buttons
+        document.querySelectorAll('.btn, .upgrade-btn').forEach(button => {
+            button.addEventListener('mousemove', (e) => {
+                const rect = button.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                
+                button.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
+            });
+            
+            button.addEventListener('mouseleave', () => {
+                button.style.transform = 'translate(0, 0)';
+            });
+        });
+
+        // Smooth reveal for sections
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.section').forEach(section => {
+            section.classList.add('reveal-section');
+            revealObserver.observe(section);
+        });
+
+        // Performance optimization
+        let ticking = false;
+        function updateAnimations() {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    // Batch DOM updates here if needed
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }
+
+        // Add scroll throttling for better performance
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+            if (scrollTimeout) {
+                clearTimeout(scrollTimeout);
+            }
+            scrollTimeout = setTimeout(updateAnimations, 10);
+        });
+
+        // Counter animation
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const target = parseInt(counter.getAttribute('data-count'));
+                    const duration = 500; // 0.5 seconds (ultra fast)
+                    const increment = target / (duration / 16); // 60fps
+                    let current = 0;
+
+                    const updateCounter = () => {
+                        current += increment;
+                        if (current < target) {
+                            counter.textContent = `¥${Math.floor(current).toLocaleString()}`;
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            counter.textContent = `¥${target.toLocaleString()}`;
+                        }
+                    };
+
+                    updateCounter();
+                    counterObserver.unobserve(counter);
+                }
+            });
+        }, observerOptions);
+
+        // Observe counter elements
+        document.querySelectorAll('.counter-number').forEach(counter => {
+            counterObserver.observe(counter);
+        });
+    </script>
+</body>
+</html> 

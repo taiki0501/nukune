@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>利用規約 - NUKUNE</title>
+    <meta name="description" content="NUKUNE 利用規約 - サービスご利用時の規約について">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #111827;
+            --accent-burgundy: #8B1E3F;
+            --accent-gold: #D4AF37;
+            --bg-dark: #0F131A;
+            --text-light: #F9FAFB;
+            --text-gray: #9CA3AF;
+            --card-bg: rgba(17, 24, 39, 0.8);
+            --border-color: rgba(212, 175, 55, 0.2);
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(15, 19, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            padding: 1rem 0;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: var(--text-light);
+        }
+
+        .logo_img {
+            width: 120px;
+            height: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--accent-gold);
+        }
+
+        .nav-link.primary {
+            background: linear-gradient(135deg, var(--accent-burgundy), #A02141);
+            color: white;
+            padding: 0.75rem 1.5rem;
+        }
+
+        .nav-link.primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(139, 30, 63, 0.3);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+            padding: 4rem 0;
+            min-height: calc(100vh - 80px);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .page-title {
+            font-family: 'Playfair Display', 'Noto Serif JP', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .content-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 3rem;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            margin-bottom: 2rem;
+        }
+
+        .policy-section {
+            margin-bottom: 3rem;
+        }
+
+        .policy-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .policy-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--accent-gold);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .policy-content {
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        .policy-content h3 {
+            color: var(--text-light);
+            font-weight: 600;
+            margin: 1.5rem 0 1rem 0;
+        }
+
+        .policy-content ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .policy-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .policy-content strong {
+            color: var(--text-light);
+        }
+
+        .warning-box {
+            background: rgba(220, 38, 38, 0.1);
+            border: 1px solid rgba(220, 38, 38, 0.3);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .warning-box h3 {
+            color: #DC2626;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .warning-box p {
+            color: var(--text-gray);
+        }
+
+        .contact-info {
+            background: rgba(139, 30, 63, 0.1);
+            border: 1px solid rgba(139, 30, 63, 0.3);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-info h3 {
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-dark);
+            padding: 3rem 0 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            text-align: center;
+            color: var(--text-gray);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-notice {
+            color: #DC2626;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-copyright {
+            font-size: 0.9rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .nav-link {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.9rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .content-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .page-title {
+                font-size: 1.8rem;
+            }
+
+            .policy-title {
+                font-size: 1.3rem;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo_img {
+                width: 100px;
+            }
+
+            .nav-links {
+                gap: 0.5rem;
+            }
+
+            .page-title {
+                font-size: 1.6rem;
+            }
+
+            .content-card {
+                padding: 1.5rem;
+            }
+
+            .contact-info,
+            .warning-box {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="/" class="logo">
+                <img src="asset/img/logo_nukune.png" width="150" height="40" alt="" class="logo_img">
+            </a>
+            <nav class="nav-links">
+                <a href="member.html" class="nav-link">ログイン</a>
+                <a href="#" class="nav-link primary">新規登録</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <h1 class="page-title">利用規約</h1>
+            <p class="page-subtitle">サービスご利用時の規約について</p>
+            
+            <div class="content-card">
+                <div class="policy-section">
+                    <h2 class="policy-title">第1条 総則</h2>
+                    <div class="policy-content">
+                        <p>この利用規約（以下「本規約」）は、PEDIA株式会社（以下「当社」）が提供するマッチングサービス「NUKUNE」（以下「本サービス」）の利用に関する条件を定めるものです。</p>
+                        <p>本サービスをご利用いただくお客様（以下「ユーザー」）は、本規約に同意したものとみなします。</p>
+                    </div>
+                </div>
+
+                <div class="policy-section">
+                    <h2 class="policy-title">第2条 サービス概要</h2>
+                    <div class="policy-content">
+                        <p>本サービスは、18歳以上の成人向けマッチングプラットフォームであり、以下の機能を提供します：</p>
+                        <ul>
+                            <li>プロフィール作成・閲覧機能</li>
+                            <li>マッチング機能</li>
+                            <li>メッセージ機能</li>
+                            <li>検索機能</li>
+                            <li>投稿機能</li>
+                            <li>その他付随する機能</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="policy-section">
+                    <h2 class="policy-title">第3条 利用条件</h2>
+                    <div class="policy-content">
+                        <p>本サービスのご利用には、以下の条件を満たす必要があります：</p>
+                        <ul>
+                            <li>満18歳以上の成人であること</li>
+                            <li>日本国内に居住していること</li>
+                            <li>本規約およびプライバシーポリシーに同意すること</li>
+                            <li>本人確認書類の提出が可能であること</li>
+                            <li>虚偽の情報を登録しないこと</li>
+                            <li>他人になりすましていないこと</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <h3><i class="fas fa-exclamation-triangle"></i> 年齢制限について</h3>
+                    <p>本サービスは18歳以上の成人のみを対象としており、18歳未満の方のご利用は固くお断りいたします。年齢を偽って利用した場合、即座にアカウントを停止いたします。</p>
+                </div>
+
+                <div class="policy-section">
+                    <h2 class="policy-title">第4条 禁止事項</h2>
+                    <div class="policy-content">
+                        <p>ユーザーは以下の行為を行ってはいけません：</p>
+                        <ul>
+                            <li>法令に違反する行為</li>
+                            <li>他のユーザーへの嫌がらせ、中傷、脅迫行為</li>
+                            <li>虚偽の情報の登録・投稿</li>
+                            <li>なりすまし行為</li>
+                            <li>営利目的での利用</li>
+                            <li>勧誘行為（宗教、政治、MLM等）</li>
+                            <li>金銭の要求・貸借</li>
+                            <li>他のサービスやアプリへの誘導</li>
+                            <li>個人情報の無断収集</li>
+                            <li>システムの不正利用</li>
+                            <li>アカウントの売買・譲渡</li>
+                            <li>その他、当社が不適切と判断する行為</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="policy-section">
+                    <h2 class="policy-title">第5条 料金・決済</h2>
+                    <div class="policy-content">
+                        <h3>料金体系</h3>
+                        <ul>
+                            <li>女性会員：基本機能無料</li>
+                            <li>男性会員：月額定額制（詳細は料金ページをご確認ください）</li>
+                        </ul>
+                        
+                        <h3>決済について</h3>
+                        <ul>
+                            <li>決済はクレジットカード、その他当社が指定する方法で行います</li>
+                            <li>料金は前払い制です</li>
+                            <li>自動更新が設定されている場合、期限前に自動で課金されます</li>
+                            <li>返金は原則として行いません</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="policy-section">
+                    <h2 class="policy-title">第6条 アカウント管理</h2>
+                    <div class="policy-content">
+                        <p>ユーザーは以下の責任を負います：</p>
+                        <ul>
+                            <li>アカウント情報の適切な管理</li>
+                            <li>パスワードの秘匿</li>
+                            <li>アカウントの不正利用防止</li>
+                            <li>登録情報の正確性の維持</li>
+                        </ul>
+                        <p>アカウントの不正利用により生じた損害について、当社は一切の責任を負いません。</p>
+                    </div>
+                </div>
+
+                <div class="policy-section">
+                    <h2 class="policy-title">第7条 個人情報の取り扱い</h2>
+                    <div class="policy-content">
+                        <p>個人情報の取り扱いについては、別途定めるプライバシーポリシーに従います。</p>
+                        <p>ユーザーは、本サービスの利用により他のユーザーの個人情報を取得した場合、適切に取り扱う義務を負います。</p>
+                    </div>
+                </div>
+
+                <div class="policy-section">
+                    <h2 class="policy-title">第8条 サービス停止・変更</h2>
+                    <div class="policy-content">
+                        <p>当社は以下の場合、事前通知なくサービスを停止または変更することがあります：</p>
+                        <ul>
+                            <li>システムメンテナンスの場合</li>
+                            <li>システム障害の場合</li>
+                            <li>法令の改正等により必要な場合</li>
+                            <li>その他、当社が必要と判断した場合</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="policy-section">
+                    <h2 class="policy-title">第9条 利用停止・退会</h2>
+                    <div class="policy-content">
+                        <h3>利用停止</h3>
+                        <p>当社は、ユーザーが以下に該当する場合、事前通知なくアカウントを停止することがあります：</p>
+                        <ul>
+                            <li>本規約に違反した場合</li>
+                            <li>虚偽の情報を登録した場合</li>
+                            <li>長期間利用がない場合</li>
+                            <li>その他、当社が不適切と判断した場合</li>
+                        </ul>
+                        
+                        <h3>退会</h3>
+                        <p>ユーザーはいつでも退会手続きを行うことができます。退会時、アカウント情報は削除されます。</p>
+                    </div>
+                </div>
+
+                <div class="policy-section">
+                    <h2 class="policy-title">第10条 免責事項</h2>
+                    <div class="policy-content">
+                        <p>当社は以下について、一切の責任を負いません：</p>
+                        <ul>
+                            <li>ユーザー間のトラブル</li>
+                            <li>本サービスの利用により発生した損害</li>
+                            <li>システム障害による損害</li>
+                            <li>第三者による不正アクセス</li>
+                            <li>ユーザーの個人情報の漏洩（当社の故意・重過失による場合を除く）</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="policy-section">
+                    <h2 class="policy-title">第11条 知的財産権</h2>
+                    <div class="policy-content">
+                        <p>本サービスに関する著作権、商標権その他の知的財産権は当社に帰属します。</p>
+                        <p>ユーザーが投稿したコンテンツの著作権はユーザーに帰属しますが、当社は本サービスの運営に必要な範囲で利用できるものとします。</p>
+                    </div>
+                </div>
+
+                <div class="policy-section">
+                    <h2 class="policy-title">第12条 規約の変更</h2>
+                    <div class="policy-content">
+                        <p>当社は必要に応じて本規約を変更することがあります。重要な変更については、サービス内またはメールにて事前にお知らせいたします。</p>
+                        <p>変更後の規約は、当社が指定した日時から効力を発生するものとします。</p>
+                    </div>
+                </div>
+
+                <div class="policy-section">
+                    <h2 class="policy-title">第13条 準拠法・管轄裁判所</h2>
+                    <div class="policy-content">
+                        <p>本規約は日本国法に準拠し、本サービスに関する紛争については、東京地方裁判所を第一審の専属的合意管轄裁判所とします。</p>
+                    </div>
+                </div>
+
+            
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="privacy.html" class="footer-link">プライバシーポリシー</a>
+                    <a href="kiyaku.html" class="footer-link">利用規約</a>
+                    <a href="contact.html" class="footer-link">お問い合わせ</a>
+                    <a href="company.html" class="footer-link">会社概要</a>
+                </div>
+                <p class="footer-notice">Nukuneは成人（18歳以上）のみを対象としています。</p>
+                <p class="footer-copyright">© 2025 Nukune. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            const scrolled = window.scrollY;
+            
+            if (scrolled > 100) {
+                header.style.background = 'rgba(15, 19, 26, 0.98)';
+            } else {
+                header.style.background = 'rgba(15, 19, 26, 0.95)';
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
